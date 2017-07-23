@@ -62,17 +62,83 @@ function addNewTask(){
     var valuesArray = savingChanges();
     var value = valuesArray[idCounter];
     if (value.priority === 'low'){
-        document.getElementById("doIt").innerHTML += '<div class="panel panel-info" id="' + idTask +'"><div class="panel-heading"><h2 class="panel-title">' + value.name + '</h2></div><div class="panel-body"><span class="description">' + value.description + '</span><br><br><span class="the-date">' + value.date + '</span></div><div class="panel-footer text-center"><button class="btn btn-success pull-left btnMoveToInProgress" id="' + idButton +'">Start</button><div class="btn-group" role="group" aria-label="taskSettingsGroup"><button data-toggle="modal" data-target="#myThirdModal" class="btn btn-default glyphicon glyphicon-edit changeDescriptionBtn" id="' + idButton +'"></button><button data-toggle="modal" data-target="#mySecondModal" class="btn btn-default glyphicon glyphicon-align-right changePriorityBtn" id="' + idButton +'"></button></div><button class="btn btn-danger pull-right btnMoveFromDoItToAborted" id="' + idButton +'">Abort</button></div></div>';
-        idCounter += 1;
+        document.getElementById("doIt").innerHTML += '<div class="panel panel-info" id="' + idTask +'" data-time="' + value.date.getTime() + '" data-priority=0><div class="panel-heading"><h2 class="panel-title">' + value.name + '</h2></div><div class="panel-body"><span class="description">' + value.description + '</span><br><br><span class="the-date">' + value.date + '</span></div><div class="panel-footer text-center"><button class="btn btn-success pull-left btnMoveToInProgress" id="' + idButton +'">Start</button><div class="btn-group" role="group" aria-label="taskSettingsGroup"><button data-toggle="modal" data-target="#myThirdModal" class="btn btn-default glyphicon glyphicon-edit changeDescriptionBtn" id="' + idButton +'"></button><button data-toggle="modal" data-target="#mySecondModal" class="btn btn-default glyphicon glyphicon-align-right changePriorityBtn" id="' + idButton +'"></button></div><button class="btn btn-danger pull-right btnMoveFromDoItToAborted" id="' + idButton +'">Abort</button></div></div>';
+        idCounter += 1; 
     } else if (value.priority === 'normal'){
-        document.getElementById("doIt").innerHTML += '<div class="panel panel-warning" id="' + idTask +'"><div class="panel-heading"><h2 class="panel-title">' + value.name + '</h2></div><div class="panel-body"><span class="description">' + value.description + '</span><br><br><span class="the-date">' + value.date + '</span></div><div class="panel-footer text-center"><button class="btn btn-success pull-left btnMoveToInProgress" id="' + idButton +'">Start</button><div class="btn-group" role="group" aria-label="taskSettingsGroup"><button data-toggle="modal" data-target="#myThirdModal" class="btn btn-default glyphicon glyphicon-edit changeDescriptionBtn" id="' + idButton +'"></button><button data-toggle="modal" data-target="#mySecondModal" class="btn btn-default glyphicon glyphicon-align-right changePriorityBtn" id="' + idButton +'"></button></div><button class="btn btn-danger pull-right btnMoveFromDoItToAborted" id="' + idButton +'">Abort</button></div></div>';
+        document.getElementById("doIt").innerHTML += '<div class="panel panel-warning" id="' + idTask +'"data-time="' + value.date.getTime() + '" data-priority=1><div class="panel-heading"><h2 class="panel-title">' + value.name + '</h2></div><div class="panel-body"><span class="description">' + value.description + '</span><br><br><span class="the-date">' + value.date + '</span></div><div class="panel-footer text-center"><button class="btn btn-success pull-left btnMoveToInProgress" id="' + idButton +'">Start</button><div class="btn-group" role="group" aria-label="taskSettingsGroup"><button data-toggle="modal" data-target="#myThirdModal" class="btn btn-default glyphicon glyphicon-edit changeDescriptionBtn" id="' + idButton +'"></button><button data-toggle="modal" data-target="#mySecondModal" class="btn btn-default glyphicon glyphicon-align-right changePriorityBtn" id="' + idButton +'"></button></div><button class="btn btn-danger pull-right btnMoveFromDoItToAborted" id="' + idButton +'">Abort</button></div></div>';
         idCounter += 1;
     } else if (value.priority === 'high'){
-        document.getElementById("doIt").innerHTML += '<div class="panel panel-danger" id="' + idTask +'"><div class="panel-heading"><h2 class="panel-title">' + value.name + '</h2></div><div class="panel-body"><span class="description">' + value.description + '</span><br><br><span class="the-date">' + value.date + '</span></div><div class="panel-footer text-center"><button class="btn btn-success pull-left btnMoveToInProgress" id="' + idButton +'">Start</button><div class="btn-group" role="group" aria-label="taskSettingsGroup"><button data-toggle="modal" data-target="#myThirdModal" class="btn btn-default glyphicon glyphicon-edit changeDescriptionBtn" id="' + idButton +'"></button><button data-toggle="modal" data-target="#mySecondModal" class="btn btn-default glyphicon glyphicon-align-right changePriorityBtn" id="' + idButton +'"></button></div><button class="btn btn-danger pull-right btnMoveFromDoItToAborted" id="' + idButton +'">Abort</button></div></div>';
+        document.getElementById("doIt").innerHTML += '<div class="panel panel-danger" id="' + idTask +'"data-time="' + value.date.getTime() + '" data-priority=2><div class="panel-heading"><h2 class="panel-title">' + value.name + '</h2></div><div class="panel-body"><span class="description">' + value.description + '</span><br><br><span class="the-date">' + value.date + '</span></div><div class="panel-footer text-center"><button class="btn btn-success pull-left btnMoveToInProgress" id="' + idButton +'">Start</button><div class="btn-group" role="group" aria-label="taskSettingsGroup"><button data-toggle="modal" data-target="#myThirdModal" class="btn btn-default glyphicon glyphicon-edit changeDescriptionBtn" id="' + idButton +'"></button><button data-toggle="modal" data-target="#mySecondModal" class="btn btn-default glyphicon glyphicon-align-right changePriorityBtn" id="' + idButton +'"></button></div><button class="btn btn-danger pull-right btnMoveFromDoItToAborted" id="' + idButton +'">Abort</button></div></div>';
         idCounter += 1;
     }
+    sortDoItFieldByPriority();
+    sortDoItFieldByTime();
 
     checkIfMoveButtonClicked();
+}
+
+function sortDoItFieldByTime(){
+    var $wrapper = $('#doIt');
+    $wrapper.find('.panel').sort(function (a, b) {
+        return +a.dataset.time - +b.dataset.time;
+    })
+    .appendTo($wrapper);
+}
+
+function sortInProgressFieldByTime(){
+    var $wrapper = $('#inProgress');
+    $wrapper.find('.panel').sort(function (a, b) {
+        return +a.dataset.time - +b.dataset.time;
+    })
+    .appendTo($wrapper);
+}
+
+function sortDoneFieldByTime(){
+    var $wrapper = $('#done');
+    $wrapper.find('.panel').sort(function (a, b) {
+        return +a.dataset.time - +b.dataset.time;
+    })
+    .appendTo($wrapper);
+}
+
+function sortAbortedFieldByTime(){
+    var $wrapper = $('#aborted');
+    $wrapper.find('.panel').sort(function (a, b) {
+        return +a.dataset.time - +b.dataset.time;
+    })
+    .appendTo($wrapper);
+}
+
+function sortDoItFieldByPriority(){
+    var $wrapper = $('#doIt');
+    $wrapper.find('.panel').sort(function (a, b) {
+        return +a.dataset.priority - +b.dataset.priority;
+    })
+    .appendTo($wrapper);
+}
+
+function sortInProgressFieldByPriority(){
+    var $wrapper = $('#inProgress');
+    $wrapper.find('.panel').sort(function (a, b) {
+        return +a.dataset.priority - +b.dataset.priority;
+    })
+    .appendTo($wrapper);
+}
+
+function sortDoneFieldByPriority(){
+    var $wrapper = $('#done');
+    $wrapper.find('.panel').sort(function (a, b) {
+        return +a.dataset.priority - +b.dataset.priority;
+    })
+    .appendTo($wrapper);
+}
+
+function sortAbortedFieldByPriority(){
+    var $wrapper = $('#aborted');
+    $wrapper.find('.panel').sort(function (a, b) {
+        return +a.dataset.priority - +b.dataset.priority;
+    })
+    .appendTo($wrapper);
 }
 
 function moveToInProgress(idButton){
@@ -88,6 +154,9 @@ function moveToInProgress(idButton){
     var descriptionChangeButton = task.children[2].children[1].firstChild;
     task.children[2].children[1].removeChild(descriptionChangeButton);
     document.getElementById("inProgress").appendChild(task);
+
+    sortInProgressFieldByPriority();
+    sortInProgressFieldByTime();
 
     checkIfMoveButtonClicked();
 }
@@ -106,6 +175,9 @@ function moveFromDoItToAborted(idButton){
     task.classList.add('panel-default');
     task.children[0].innerHTML += '<button type="button" class="close close-panel" data-target="#' + idTask +'" data-dismiss="alert" onclick="alert("detected")"> <span aria-hidden="true" class="glyphicon glyphicon-remove"></span></button>';
 
+    sortAbortedFieldByPriority();
+    sortAbortedFieldByTime();
+
     checkIfMoveButtonClicked();
 }
 
@@ -123,6 +195,9 @@ function moveToDone(idButton){
     task.classList.add('panel-success');
     task.children[0].innerHTML += '<button type="button" class="close close-panel" data-target="#' + idTask +'" data-dismiss="alert"> <span aria-hidden="true" class="glyphicon glyphicon-remove"></span></button>';
 
+    sortDoneFieldByPriority();
+    sortDoneFieldByTime();
+
     checkIfMoveButtonClicked();
 }
 
@@ -139,6 +214,9 @@ function moveFromInProgressToAborted(idButton){
     task.classList.remove('panel-danger');
     task.classList.add('panel-default');
     task.children[0].innerHTML += '<button type="button" class="close close-panel" data-target="#' + idTask +'" data-dismiss="alert"> <span aria-hidden="true" class="glyphicon glyphicon-remove"></span></button>';
+
+    sortAbortedFieldByPriority()
+    sortAbortedFieldByTime();
 
     checkIfMoveButtonClicked();
 }
@@ -164,16 +242,19 @@ function changePriority(idButton){
         priorityChangingTask.classList.remove('panel-warning');
         priorityChangingTask.classList.remove('panel-danger');
         priorityChangingTask.classList.add('panel-info');
+        priorityChangingTask.setAttribute("data-priority", 0);
     } else if (document.getElementById('normalPriority').checked){
         priorityChangingTask.classList.remove('panel-info');
         priorityChangingTask.classList.remove('panel-warning');
         priorityChangingTask.classList.remove('panel-danger');
         priorityChangingTask.classList.add('panel-warning');
+        priorityChangingTask.setAttribute("data-priority", 1);
     } else if (document.getElementById('highPriority').checked){
         priorityChangingTask.classList.remove('panel-info');
         priorityChangingTask.classList.remove('panel-warning');
         priorityChangingTask.classList.remove('panel-danger');
         priorityChangingTask.classList.add('panel-danger');
+        priorityChangingTask.setAttribute("data-priority", 2);
     }
 
     checkIfMoveButtonClicked();

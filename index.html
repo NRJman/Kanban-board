@@ -29,106 +29,103 @@
 							<li><a class="navbar-menu visible-xs visible-sm" href="#aborted">ABORTED</a></li>
 						</ul>
 						<ul class="nav navbar-nav">
-							<li><button class="btn btn-success btn-sm btn3d" id="signIn" data-toggle="modal" data-target="#myModal">ADD NEW</button></li>
+							<li><button class="btn btn-success btn-sm btn3d hidden-xs" id="signIn" data-toggle="modal" data-target="#myModal">ADD NEW</button></li>
 						</ul>
 					</div>
 					<h1 class="jumbo-heading hidden-xs"><a href="index.html">KANBAN BOARD</a></h1>
 				</div>
 			</nav>
+			<button class="btn btn-success btn-lg btn3d visible-xs" id="signIn" data-toggle="modal" data-target="#myModal">ADD NEW</button>
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  	<div class="modal-dialog" role="document">
+			    	<div class="modal-content">
+				      	<div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					        	<span aria-hidden="true" class="glyphicon glyphicon-remove"></span>
+					        </button>
+					        <h4 class="modal-title" id="myModalLabel">New task</h4>
+					    </div>
+					    <div class="modal-body">
+					        <form>
+							  	<div class="form-group">
+							    	<label for="taskName">Task name</label>
+							    	<input type="text" class="form-control" id="taskName" placeholder="Name">
+							  	</div>
+							  	<div class="form-group">
+							    	<label for="taskDescription">Task description</label>
+							    	<input type="text" class="form-control" id="taskDescription" placeholder="Description">
+							  	</div>
+							  	<div class="form-group">
+							    	<label for="priorityChoice">Priority</label><br>
+							    	<input id="low" type="radio" name="priority" value="low" checked> <span class="radio-btn">Low</span>
+									<input id="normal" type="radio" name="priority" value="normal"> <span class="radio-btn">Normal</span>
+									<input id="high" type="radio" name="priority" value="high"> <span class="radio-btn">High</span>  
+								</div>
+							</form>
+					    </div>
+					    <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="addNewTask()">Save changes</button>
+					    </div>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal fade" id="mySecondModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  	<div class="modal-dialog" role="document">
+			    	<div class="modal-content">
+				      	<div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					        	<span aria-hidden="true" class="glyphicon glyphicon-remove"></span>
+					        </button>
+					        <h4 class="modal-title" id="myModalLabel">Change priority</h4>
+					    </div>
+					    <div class="modal-body">
+					        <form>
+								<div class="form-group">
+							    	<label for="priorityChoice">Priority</label><br>
+							    	<input id="lowPriority" type="radio" name="priority" value="low"> <span class="radio-btn">Low</span>
+									<input id="normalPriority" type="radio" name="priority" value="normal"> <span class="radio-btn">Normal</span>
+									<input id="highPriority" type="radio" name="priority" value="high"> <span class="radio-btn">High</span>  
+								</div>
+							</form>
+					    </div>
+					    <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="changePriority()">Save changes</button>
+					    </div>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal fade" id="myThirdModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  	<div class="modal-dialog" role="document">
+			    	<div class="modal-content">
+				      	<div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					        	<span aria-hidden="true" class="glyphicon glyphicon-remove"></span>
+					        </button>
+					        <h4 class="modal-title" id="myModalLabel">Change description</h4>
+					    </div>
+					    <div class="modal-body">
+					        <form>
+								<div class="form-group">
+							    	<label for="taskDescription">Task description</label>
+							    	<input type="text" class="form-control" id="newTaskDescription" placeholder="Description">
+							  	</div>
+							</form>
+					    </div>
+					    <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="changeDescription()">Save changes</button>
+					    </div>
+					</div>
+				</div>
+			</div>
 		</div>	
 	</header>
 
 	<section class="main-content">
-		
-
-		<!-- Modal -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  	<div class="modal-dialog" role="document">
-		    	<div class="modal-content">
-			      	<div class="modal-header">
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				        	<span aria-hidden="true" class="glyphicon glyphicon-remove"></span>
-				        </button>
-				        <h4 class="modal-title" id="myModalLabel">New task</h4>
-				    </div>
-				    <div class="modal-body">
-				        <form>
-						  	<div class="form-group">
-						    	<label for="taskName">Task name</label>
-						    	<input type="text" class="form-control" id="taskName" placeholder="Name">
-						  	</div>
-						  	<div class="form-group">
-						    	<label for="taskDescription">Task description</label>
-						    	<input type="text" class="form-control" id="taskDescription" placeholder="Description">
-						  	</div>
-						  	<div class="form-group">
-						    	<label for="priorityChoice">Priority</label><br>
-						    	<input id="low" type="radio" name="priority" value="low" checked> <span class="radio-btn">Low</span>
-								<input id="normal" type="radio" name="priority" value="normal"> <span class="radio-btn">Normal</span>
-								<input id="high" type="radio" name="priority" value="high"> <span class="radio-btn">High</span>  
-							</div>
-						</form>
-				    </div>
-				    <div class="modal-footer">
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="addNewTask()">Save changes</button>
-				    </div>
-				</div>
-			</div>
-		</div>
-
-		<div class="modal fade" id="mySecondModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  	<div class="modal-dialog" role="document">
-		    	<div class="modal-content">
-			      	<div class="modal-header">
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				        	<span aria-hidden="true" class="glyphicon glyphicon-remove"></span>
-				        </button>
-				        <h4 class="modal-title" id="myModalLabel">Change priority</h4>
-				    </div>
-				    <div class="modal-body">
-				        <form>
-							<div class="form-group">
-						    	<label for="priorityChoice">Priority</label><br>
-						    	<input id="lowPriority" type="radio" name="priority" value="low"> <span class="radio-btn">Low</span>
-								<input id="normalPriority" type="radio" name="priority" value="normal"> <span class="radio-btn">Normal</span>
-								<input id="highPriority" type="radio" name="priority" value="high"> <span class="radio-btn">High</span>  
-							</div>
-						</form>
-				    </div>
-				    <div class="modal-footer">
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="changePriority()">Save changes</button>
-				    </div>
-				</div>
-			</div>
-		</div>
-
-		<div class="modal fade" id="myThirdModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  	<div class="modal-dialog" role="document">
-		    	<div class="modal-content">
-			      	<div class="modal-header">
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				        	<span aria-hidden="true" class="glyphicon glyphicon-remove"></span>
-				        </button>
-				        <h4 class="modal-title" id="myModalLabel">Change description</h4>
-				    </div>
-				    <div class="modal-body">
-				        <form>
-							<div class="form-group">
-						    	<label for="taskDescription">Task description</label>
-						    	<input type="text" class="form-control" id="newTaskDescription" placeholder="Description">
-						  	</div>
-						</form>
-				    </div>
-				    <div class="modal-footer">
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="changeDescription()">Save changes</button>
-				    </div>
-				</div>
-			</div>
-		</div>
-
 		<div class="container" id="dataRewriting">
 			<div class="row" id="dataToSave">
 				<div class="col-xs-12 col-sm-6 col-md-3">

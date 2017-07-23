@@ -31,6 +31,31 @@ body{
 		color: white;
 		font-size: 1.1em;
 	}
+
+	@-webkit-keyframes glowing {
+	  0% {-webkit-box-shadow: 0 0 3px rgba(255, 255, 255, 0.5); }
+	  50% {-webkit-box-shadow: 0 0 40px rgba(255, 255, 255, 0.5); }
+	  100% {-webkit-box-shadow: 0 0 3px rgba(255, 255, 255, 0.5); }
+	}
+
+	@-moz-keyframes glowing {
+	  0% {-moz-box-shadow: 0 0 3px rgba(255, 255, 255, 0.5); }
+	  50% {-moz-box-shadow: 0 0 40px rgba(255, 255, 255, 0.5); }
+	  100% {-moz-box-shadow: 0 0 3px rgba(255, 255, 255, 0.5); }
+	}
+
+	@-o-keyframes glowing {
+	  0% {box-shadow: 0 0 3px rgba(255, 255, 255, 0.5); }
+	  50% {box-shadow: 0 0 40px rgba(255, 255, 255, 0.5); }
+	  100% {box-shadow: 0 0 3px rgba(255, 255, 255, 0.5); }
+	}
+
+	@keyframes glowing {
+	  0% {box-shadow: 0 0 3px rgba(255, 255, 255, 0.5); }
+	  50% {box-shadow: 0 0 40px rgba(255, 255, 255, 0.5); }
+	  100% {box-shadow: 0 0 3px rgba(255, 255, 255, 0.5); }
+	}
+
 	.btn3d {
 	    border: 0;
 	    transition: all 40ms linear;
@@ -39,6 +64,7 @@ body{
 	    height: 45px;
 	    font-size: 1.4em;
 	}
+
 	.btn3d:active:focus,
 	.btn3d:focus:hover,
 	.btn3d:focus {
@@ -123,12 +149,19 @@ body{
 	@media (max-width: 767px){
 		header{
 			height: auto;
-			max-height: 315px;
+			max-height: 345px;
 		}
 		.btn3d{
-			width: 100%;
+			width: 30%;
+			height: 70px;
 			height: 34px;
 			font-size: 1.2em;
+			margin: auto;
+			padding-bottom: 33px;
+			-webkit-animation: glowing 1500ms infinite;
+	  		-moz-animation: glowing 1500ms infinite;
+	  		-o-animation: glowing 1500ms infinite;
+	  		animation: glowing 1500ms infinite;
 		}
 	}
 
