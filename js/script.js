@@ -40,6 +40,11 @@ if (data !== null){
 
 checkIfMoveButtonClicked();
 
+function setCheckedValueToTrue(){
+    var radioButtons = document.getElementsByName("priority");
+    radioButtons[0].checked = true;
+}
+
 function savingChanges(){
     var values = {};
     values.name = document.getElementById("taskName").value;
