@@ -1,5 +1,6 @@
 $(document).ready(function(){
-	$("#navbarToggle").blur(function (event) {
+    //Fixing navbar:
+    $("#navbarToggle").blur(function (event) {
 		var screenWidth = window.innerWidth;
 		if (screenWidth < 768) {
 			$("#navbar").collapse('hide');
@@ -8,6 +9,7 @@ $(document).ready(function(){
 		}
 	});
 
+    //Back-to-top button:
 	$(window).scroll(function () {
         if ($(this).scrollTop() > 50) {
             $('#back-to-top').fadeIn();
@@ -27,36 +29,6 @@ $(document).ready(function(){
     $('#back-to-top').tooltip('show');
 });
 
-(function (global){
-    var kanban = {};
-
-    var homeHtml = "snippets/home-snippet.html";
-    //Convinience function for inserting innerHtml for 'select'
-    var insertHtml = function(selector, html){
-        var targetElem = document.querySelector(selector);
-        targetElem.innerHtml = html;
-    };
-
-    //Show loading icon inside element identified by 'selector'
-    var showLoading = function(selector){
-        var html = "<div class='text-center'>";
-        html = "<img src='images/ajax-loader.gif'></div>";
-        insertHtml(selector, html);
-    };
-
-    //On page load (before images or CSS)
-    document.addEventListener("DOMContentLoaded", function(event){
-        //On first load
-        showLoading(".main-content");
-        $ajaxUtils.sendGetRequest(homeHtml, function(responseText){
-            document.querySelector(".main-content").innerHTML = responseText;
-        }, false);
-    });
-
-    global.$kanban = kanban;
-
-})(window);
-
 var placeToInsert = document.getElementById("dataRewriting");
 var rewriteIt = document.getElementById("dataToSave");
 var valuesArray = [];
@@ -64,7 +36,7 @@ var data = sessionStorage.getItem('key')
 if (data !== null){
     placeToInsert.removeChild(rewriteIt);
     placeToInsert.innerHTML = data;
-}
+};
 
 checkIfMoveButtonClicked();
 
@@ -82,7 +54,7 @@ function savingChanges(){
     values.date = new Date();
     valuesArray.push(values);
     return valuesArray;
-}
+};
 
 var idCounter = 0;
 
@@ -92,20 +64,20 @@ function addNewTask(){
     var valuesArray = savingChanges();
     var value = valuesArray[idCounter];
     if (value.priority === 'low'){
-        document.getElementById("doIt").innerHTML += '<div class="panel panel-info" id="' + idTask +'" data-time="' + value.date.getTime() + '" data-priority=0><div class="panel-heading"><h2 class="panel-title">' + value.name + '</h2></div><div class="panel-body"><span class="description">' + value.description + '</span><br><br><span class="the-date">' + value.date + '</span></div><div class="panel-footer text-center"><button class="btn btn-success pull-left btnMoveToInProgress" id="' + idButton +'">Start</button><div class="btn-group" role="group" aria-label="taskSettingsGroup"><button data-toggle="modal" data-target="#myThirdModal" class="btn btn-default glyphicon glyphicon-edit changeDescriptionBtn" id="' + idButton +'"></button><button data-toggle="modal" data-target="#mySecondModal" class="btn btn-default glyphicon glyphicon-align-right changePriorityBtn" id="' + idButton +'"></button></div><button class="btn btn-danger pull-right btnMoveFromDoItToAborted" id="' + idButton +'">Abort</button></div></div>';
+        document.getElementById("doIt").innerHTML += '<div class="panel panel-info" id="' + idTask +'" data-time="' + value.date.getTime() + '" data-priority=0><div class="panel-heading"><h2 class="panel-title">' + value.name + '</h2></div><div class="panel-body"><span class="description">' + value.description + '</span><br><br><span class="the-date">' + value.date + '</span></div><div class="panel-footer text-center"><button class="btn btn-sm btn-success pull-left btnMoveToInProgress" id="' + idButton +'">Start</button><div class="btn-group" role="group" aria-label="taskSettingsGroup"><button data-toggle="modal" data-target="#myThirdModal" class="btn btn-sm btn-default glyphicon glyphicon-edit changeDescriptionBtn" id="' + idButton +'"></button><button data-toggle="modal" data-target="#mySecondModal" class="btn btn-sm btn-default glyphicon glyphicon-align-right changePriorityBtn" id="' + idButton +'"></button></div><button class="btn btn-sm btn-danger pull-right btnMoveFromDoItToAborted" id="' + idButton +'">Abort</button></div></div>';
         idCounter += 1; 
     } else if (value.priority === 'normal'){
-        document.getElementById("doIt").innerHTML += '<div class="panel panel-warning" id="' + idTask +'"data-time="' + value.date.getTime() + '" data-priority=1><div class="panel-heading"><h2 class="panel-title">' + value.name + '</h2></div><div class="panel-body"><span class="description">' + value.description + '</span><br><br><span class="the-date">' + value.date + '</span></div><div class="panel-footer text-center"><button class="btn btn-success pull-left btnMoveToInProgress" id="' + idButton +'">Start</button><div class="btn-group" role="group" aria-label="taskSettingsGroup"><button data-toggle="modal" data-target="#myThirdModal" class="btn btn-default glyphicon glyphicon-edit changeDescriptionBtn" id="' + idButton +'"></button><button data-toggle="modal" data-target="#mySecondModal" class="btn btn-default glyphicon glyphicon-align-right changePriorityBtn" id="' + idButton +'"></button></div><button class="btn btn-danger pull-right btnMoveFromDoItToAborted" id="' + idButton +'">Abort</button></div></div>';
+        document.getElementById("doIt").innerHTML += '<div class="panel panel-warning" id="' + idTask +'"data-time="' + value.date.getTime() + '" data-priority=1><div class="panel-heading"><h2 class="panel-title">' + value.name + '</h2></div><div class="panel-body"><span class="description">' + value.description + '</span><br><br><span class="the-date">' + value.date + '</span></div><div class="panel-footer text-center"><button class="btn btn-sm btn-success pull-left btnMoveToInProgress" id="' + idButton +'">Start</button><div class="btn-group" role="group" aria-label="taskSettingsGroup"><button data-toggle="modal" data-target="#myThirdModal" class="btn btn-sm btn-default glyphicon glyphicon-edit changeDescriptionBtn" id="' + idButton +'"></button><button data-toggle="modal" data-target="#mySecondModal" class="btn btn-sm btn-default glyphicon glyphicon-align-right changePriorityBtn" id="' + idButton +'"></button></div><button class="btn btn-sm btn-danger pull-right btnMoveFromDoItToAborted" id="' + idButton +'">Abort</button></div></div>';
         idCounter += 1;
     } else if (value.priority === 'high'){
-        document.getElementById("doIt").innerHTML += '<div class="panel panel-danger" id="' + idTask +'"data-time="' + value.date.getTime() + '" data-priority=2><div class="panel-heading"><h2 class="panel-title">' + value.name + '</h2></div><div class="panel-body"><span class="description">' + value.description + '</span><br><br><span class="the-date">' + value.date + '</span></div><div class="panel-footer text-center"><button class="btn btn-success pull-left btnMoveToInProgress" id="' + idButton +'">Start</button><div class="btn-group" role="group" aria-label="taskSettingsGroup"><button data-toggle="modal" data-target="#myThirdModal" class="btn btn-default glyphicon glyphicon-edit changeDescriptionBtn" id="' + idButton +'"></button><button data-toggle="modal" data-target="#mySecondModal" class="btn btn-default glyphicon glyphicon-align-right changePriorityBtn" id="' + idButton +'"></button></div><button class="btn btn-danger pull-right btnMoveFromDoItToAborted" id="' + idButton +'">Abort</button></div></div>';
+        document.getElementById("doIt").innerHTML += '<div class="panel panel-danger" id="' + idTask +'"data-time="' + value.date.getTime() + '" data-priority=2><div class="panel-heading"><h2 class="panel-title">' + value.name + '</h2></div><div class="panel-body"><span class="description">' + value.description + '</span><br><br><span class="the-date">' + value.date + '</span></div><div class="panel-footer text-center"><button class="btn btn-sm btn-success pull-left btnMoveToInProgress" id="' + idButton +'">Start</button><div class="btn-group" role="group" aria-label="taskSettingsGroup"><button data-toggle="modal" data-target="#myThirdModal" class="btn btn-sm btn-default glyphicon glyphicon-edit changeDescriptionBtn" id="' + idButton +'"></button><button data-toggle="modal" data-target="#mySecondModal" class="btn btn-sm btn-default glyphicon glyphicon-align-right changePriorityBtn" id="' + idButton +'"></button></div><button class="btn btn-sm btn-danger pull-right btnMoveFromDoItToAborted" id="' + idButton +'">Abort</button></div></div>';
         idCounter += 1;
     }
     sortDoItFieldByPriority();
     sortDoItFieldByTime();
 
     checkIfMoveButtonClicked();
-}
+};
 
 function sortDoItFieldByTime(){
     var $wrapper = $('#doIt');
@@ -113,7 +85,7 @@ function sortDoItFieldByTime(){
         return +a.dataset.time - +b.dataset.time;
     })
     .appendTo($wrapper);
-}
+};
 
 function sortInProgressFieldByTime(){
     var $wrapper = $('#inProgress');
@@ -121,7 +93,7 @@ function sortInProgressFieldByTime(){
         return +a.dataset.time - +b.dataset.time;
     })
     .appendTo($wrapper);
-}
+};
 
 function sortDoneFieldByTime(){
     var $wrapper = $('#done');
@@ -129,7 +101,7 @@ function sortDoneFieldByTime(){
         return +a.dataset.time - +b.dataset.time;
     })
     .appendTo($wrapper);
-}
+};
 
 function sortAbortedFieldByTime(){
     var $wrapper = $('#aborted');
@@ -137,7 +109,7 @@ function sortAbortedFieldByTime(){
         return +a.dataset.time - +b.dataset.time;
     })
     .appendTo($wrapper);
-}
+};
 
 function sortDoItFieldByPriority(){
     var $wrapper = $('#doIt');
@@ -145,7 +117,7 @@ function sortDoItFieldByPriority(){
         return +a.dataset.priority - +b.dataset.priority;
     })
     .appendTo($wrapper);
-}
+};
 
 function sortInProgressFieldByPriority(){
     var $wrapper = $('#inProgress');
@@ -153,7 +125,7 @@ function sortInProgressFieldByPriority(){
         return +a.dataset.priority - +b.dataset.priority;
     })
     .appendTo($wrapper);
-}
+};
 
 function sortDoneFieldByPriority(){
     var $wrapper = $('#done');
@@ -161,7 +133,7 @@ function sortDoneFieldByPriority(){
         return +a.dataset.priority - +b.dataset.priority;
     })
     .appendTo($wrapper);
-}
+};
 
 function sortAbortedFieldByPriority(){
     var $wrapper = $('#aborted');
@@ -169,7 +141,7 @@ function sortAbortedFieldByPriority(){
         return +a.dataset.priority - +b.dataset.priority;
     })
     .appendTo($wrapper);
-}
+};
 
 function moveToInProgress(idButton){
     var column = document.getElementById("doIt");
@@ -184,12 +156,11 @@ function moveToInProgress(idButton){
     var descriptionChangeButton = task.children[2].children[1].firstChild;
     task.children[2].children[1].removeChild(descriptionChangeButton);
     document.getElementById("inProgress").appendChild(task);
-
+    
     sortInProgressFieldByPriority();
     sortInProgressFieldByTime();
-
     checkIfMoveButtonClicked();
-}
+};
 
 function moveFromDoItToAborted(idButton){
     var column = document.getElementById("doIt");
@@ -204,12 +175,11 @@ function moveFromDoItToAborted(idButton){
     task.classList.remove('panel-danger');
     task.classList.add('panel-default');
     task.children[0].innerHTML += '<button type="button" class="close close-panel" data-target="#' + idTask +'" data-dismiss="alert" onclick="alert("detected")"> <span aria-hidden="true" class="glyphicon glyphicon-remove"></span></button>';
-
+    
     sortAbortedFieldByPriority();
     sortAbortedFieldByTime();
-
     checkIfMoveButtonClicked();
-}
+};
 
 function moveToDone(idButton){
     var column = document.getElementById("inProgress");
@@ -227,9 +197,8 @@ function moveToDone(idButton){
 
     sortDoneFieldByPriority();
     sortDoneFieldByTime();
-
     checkIfMoveButtonClicked();
-}
+};
 
 function moveFromInProgressToAborted(idButton){
     var column = document.getElementById("inProgress");
@@ -247,16 +216,15 @@ function moveFromInProgressToAborted(idButton){
 
     sortAbortedFieldByPriority()
     sortAbortedFieldByTime();
-
     checkIfMoveButtonClicked();
-}
+};
 
 checkIfMoveButtonClicked();
 
 function saveData(){
     data = document.getElementById("dataRewriting").innerHTML;
     sessionStorage.setItem('key', data);
-}
+};
 
 var idPriorityChangingTask;
 var priorityChangingTask;
@@ -265,7 +233,7 @@ function changePriority(idButton){
     if (idButton !== undefined){
         idPriorityChangingTask = idButton + "Task";
         priorityChangingTask = document.getElementById(idPriorityChangingTask);
-    }
+    };
 
     if (document.getElementById('lowPriority').checked) {
         priorityChangingTask.classList.remove('panel-info');
@@ -285,10 +253,10 @@ function changePriority(idButton){
         priorityChangingTask.classList.remove('panel-danger');
         priorityChangingTask.classList.add('panel-danger');
         priorityChangingTask.setAttribute("data-priority", 2);
-    }
+    };
 
     checkIfMoveButtonClicked();
-}
+};
 
 var idDescritionChangingTask;
 var descriptionChangingTask;
@@ -303,7 +271,7 @@ function changeDescription(idButton){
     }
 
     checkIfMoveButtonClicked();
-}
+};
 
 function checkIfMoveButtonClicked(){
     var doItMoveButtons = document.getElementsByClassName("btnMoveToInProgress");

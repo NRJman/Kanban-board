@@ -1,5 +1,13 @@
+html {
+  height: 100%;
+  box-sizing: border-box; }
+
 body {
-  font-family: 'Exo 2', sans-serif; }
+  font-family: 'Exo 2', sans-serif;
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%; }
   body nav.navbar {
     background: transparent;
     border: 0; }
@@ -84,7 +92,7 @@ body {
   body .back-to-top {
     cursor: pointer;
     position: fixed;
-    bottom: 20px;
+    bottom: 40%;
     right: 20px;
     display: none; }
   body .radio-btn {
@@ -103,9 +111,49 @@ body {
     bottom: 19px;
     left: 7px;
     color: #3c763d; }
+  body section {
+    margin-bottom: 200px; }
+  body footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #292c2f;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    padding: 55px 50px;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    margin-top: 300px;
+    color: white; }
+    body footer .footer-icons {
+      text-align: center;
+      padding-top: 10px; }
+    body footer a, body footer a:hover {
+      color: white; }
+    body footer .profile-name {
+      text-align: center;
+      padding-top: 10px; }
+    body footer .wrap {
+      width: 175px;
+      height: 175px;
+      border: 1px solid #737373;
+      border-radius: 100%;
+      margin-top: 60px;
+      overflow: hidden;
+      margin: auto; }
+      body footer .wrap .profile-photo {
+        height: 175px; }
   @media (max-width: 320px) {
     body .navbar-brand a {
-      font-size: 1em; } }
+      font-size: 1em; }
+    body .back-to-top {
+      position: absolute;
+      bottom: 470px; }
+    body footer {
+      margin-top: 850px; } }
   @media (min-width: 321px) and (max-width: 375px) {
     body .navbar-brand a {
       font-size: 1.5em; } }
@@ -117,7 +165,7 @@ body {
       height: auto;
       max-height: 345px; }
     body .btn3d {
-      width: 30%;
+      width: 150px;
       height: 70px;
       height: 34px;
       font-size: 1.2em;
@@ -126,7 +174,20 @@ body {
       -webkit-animation: glowing 1500ms infinite;
       -moz-animation: glowing 1500ms infinite;
       -o-animation: glowing 1500ms infinite;
-      animation: glowing 1500ms infinite; } }
+      animation: glowing 1500ms infinite; }
+    body .back-to-top {
+      position: absolute;
+      bottom: 440px; }
+    body section {
+      margin-bottom: 430px; }
+    body footer {
+      text-align: center;
+      max-height: 425px;
+      overflow: auto; }
+      body footer .contacts {
+        margin-top: 25px; }
+      body footer .about {
+        margin-top: 25px; } }
   @media (min-width: 768px) {
     body .navbar-nav {
       width: 100%;
@@ -136,9 +197,16 @@ body {
         display: inline-block; }
     body .btn3d {
       position: relative;
-      top: 150px; } }
+      top: 150px; }
+    body .information {
+      margin-top: 50px; } }
   @media (min-width: 768px) and (max-width: 991px) {
     body .jumbotron {
-      padding-top: 30px; } }
+      padding-top: 30px; }
+    body section {
+      margin-bottom: 315px; }
+    body .back-to-top {
+      position: absolute;
+      bottom: 330px; } }
 
 /*# sourceMappingURL=style.css.map */

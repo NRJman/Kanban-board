@@ -1,5 +1,16 @@
+$blinkingColor: rgba(255, 255, 255, 0.5);
+$btn3dGlowing: glowing 1500ms infinite;
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
 body{
 	font-family: 'Exo 2', sans-serif;
+	position: relative;
+  	margin: 0;
+  	padding-bottom: 6rem;
+  	min-height: 100%;
 	nav.navbar {
 	  	background: transparent;
 	  	border: 0;
@@ -33,27 +44,27 @@ body{
 	}
 
 	@-webkit-keyframes glowing {
-	  0% {-webkit-box-shadow: 0 0 3px rgba(255, 255, 255, 0.5); }
-	  50% {-webkit-box-shadow: 0 0 40px rgba(255, 255, 255, 0.5); }
-	  100% {-webkit-box-shadow: 0 0 3px rgba(255, 255, 255, 0.5); }
+	  0% {-webkit-box-shadow: 0 0 3px $blinkingColor; }
+	  50% {-webkit-box-shadow: 0 0 40px $blinkingColor; }
+	  100% {-webkit-box-shadow: 0 0 3px $blinkingColor; }
 	}
 
 	@-moz-keyframes glowing {
-	  0% {-moz-box-shadow: 0 0 3px rgba(255, 255, 255, 0.5); }
-	  50% {-moz-box-shadow: 0 0 40px rgba(255, 255, 255, 0.5); }
-	  100% {-moz-box-shadow: 0 0 3px rgba(255, 255, 255, 0.5); }
+	  0% {-moz-box-shadow: 0 0 3px $blinkingColor; }
+	  50% {-moz-box-shadow: 0 0 40px $blinkingColor; }
+	  100% {-moz-box-shadow: 0 0 3px $blinkingColor; }
 	}
 
 	@-o-keyframes glowing {
-	  0% {box-shadow: 0 0 3px rgba(255, 255, 255, 0.5); }
-	  50% {box-shadow: 0 0 40px rgba(255, 255, 255, 0.5); }
-	  100% {box-shadow: 0 0 3px rgba(255, 255, 255, 0.5); }
+	  0% {box-shadow: 0 0 3px $blinkingColor; }
+	  50% {box-shadow: 0 0 40px $blinkingColor; }
+	  100% {box-shadow: 0 0 3px $blinkingColor; }
 	}
 
 	@keyframes glowing {
-	  0% {box-shadow: 0 0 3px rgba(255, 255, 255, 0.5); }
-	  50% {box-shadow: 0 0 40px rgba(255, 255, 255, 0.5); }
-	  100% {box-shadow: 0 0 3px rgba(255, 255, 255, 0.5); }
+	  0% {box-shadow: 0 0 3px $blinkingColor; }
+	  50% {box-shadow: 0 0 40px $blinkingColor; }
+	  100% {box-shadow: 0 0 3px $blinkingColor; }
 	}
 
 	.btn3d {
@@ -96,7 +107,7 @@ body{
 	.back-to-top {
 	    cursor: pointer;
 	    position: fixed;
-	    bottom: 20px;
+	    bottom: 40%;
 	    right: 20px;
 	    display:none;
 	}
@@ -121,13 +132,61 @@ body{
 		left: 7px;
 		color: #3c763d;
 	}
-	
+	section{
+		margin-bottom: 200px;
+	}
+	footer{
+		position: absolute;
+	  	right: 0;
+	  	bottom: 0;
+	  	left: 0;
+		background-color: #292c2f;
+		box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+		box-sizing: border-box;
+		width: 100%;
+		text-align: left;
+		padding: 55px 50px;
+		padding-top: 20px;
+		padding-bottom: 15px;
+		margin-top: 300px;
+		color: white;
+		.footer-icons{
+			text-align: center;
+			padding-top: 10px;
+		}
+		a, a:hover{
+			color: white;
+		}
+		.profile-name{
+			text-align: center;
+			padding-top: 10px;
+		}
+		.wrap{
+			width: 175px;
+			height: 175px;
+			border: 1px solid #737373;
+			border-radius: 100%;
+			margin-top: 60px;
+			overflow: hidden;
+			margin: auto;
+			.profile-photo{
+				height: 175px;
+			}
+		}
+	}
 	
 	@media (max-width: 320px){
 		.navbar-brand{
 			a{
 				font-size: 1em;
 			}
+		}
+		.back-to-top{
+			position: absolute;
+			bottom: 470px;
+		}
+		footer{
+			margin-top: 850px;
 		}
 	}
 
@@ -146,22 +205,41 @@ body{
 			}
 		}
 	}
+
 	@media (max-width: 767px){
 		header{
 			height: auto;
 			max-height: 345px;
 		}
 		.btn3d{
-			width: 30%;
+			width: 150px;
 			height: 70px;
 			height: 34px;
 			font-size: 1.2em;
 			margin: auto;
 			padding-bottom: 33px;
-			-webkit-animation: glowing 1500ms infinite;
-	  		-moz-animation: glowing 1500ms infinite;
-	  		-o-animation: glowing 1500ms infinite;
-	  		animation: glowing 1500ms infinite;
+			-webkit-animation: $btn3dGlowing;
+	  		-moz-animation: $btn3dGlowing;
+	  		-o-animation: $btn3dGlowing;
+	  		animation: $btn3dGlowing;
+		}
+		.back-to-top{
+			position: absolute;
+			bottom: 440px;
+		}
+		section{
+			margin-bottom: 430px;
+		}
+		footer{
+			text-align: center;
+			.contacts{
+				margin-top: 25px;
+			}
+			.about{
+				margin-top: 25px;
+			}
+			max-height: 425px;
+			overflow: auto;
 		}
 	}
 
@@ -178,11 +256,21 @@ body{
 			position: relative;
 	    	top: 150px;
 		}
+		.information{
+			margin-top: 50px;
+		}
 	}
 
 	@media (min-width: 768px) and (max-width: 991px){
 		.jumbotron{
 			padding-top: 30px;
+		}
+		section{
+			margin-bottom: 315px;
+		}
+		.back-to-top{
+			position: absolute;
+			bottom: 330px;
 		}
 	}
 }
