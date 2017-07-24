@@ -1,6 +1,6 @@
 ## Synopsis
 
-It's a **"Kanban board"** single page web application. You can add new tasks, edit, start doing, finish and cancel them.
+It's a **"Kanban board"** single page web application. You can add new tasks, edit, start doing, finish and cancel them. The board condition saves for a user even after the page refresh.
 
 ## Motivation
 
