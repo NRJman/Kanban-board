@@ -8,7 +8,7 @@ This is a test job for one of companies. I liked it and it was interesting for m
 
 ## Running
 
-Follow [the next link](http://NRJman.github.io) to run this app.
+Follow [the next link](https://cdn.rawgit.com/NRJman/Kanban-board/dedbecf0/index.html) to run this app.
 
 ## License
 
